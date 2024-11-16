@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FACEBOOK"
+        android:textColor="#4267B2"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:text="Log in to Facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="30dp"
+        android:elevation="1dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="Email address or phone number"
+        android:inputType="text"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center_horizontal"
+        android:hint="password"
+        android:inputType="number"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginRight="150dp"
+        android:backgroundTint="#4267B2"
+        android:text="Log In" />
+
+    <TextView
+        android:text="Forgotten account? · Sign up for Facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textStyle="italic"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="400dp"
+        android:textColor="#4267B2" />
+</RelativeLayout>
+
+
+package com.example.facebook;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText emailEditText, passwordEditText;
+    private Button loginButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        emailEditText = findViewById(R.id.email);
+        passwordEditText = findViewById(R.id.password);
+        loginButton = findViewById(R.id.loginButton);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailEditText.getText().toString().trim();
+                String password = passwordEditText.getText().toString().trim();
+
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please enter both email and password", Toast.LENGTH_SHORT).show();
+                } else if (email.equals("user") && password.equals("123")) {
+                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+}
+
